@@ -1,4 +1,4 @@
-FROM python:3.6-alpine
+FROM python:3.11.1-slim
 
 LABEL version="1.0.0"
 
