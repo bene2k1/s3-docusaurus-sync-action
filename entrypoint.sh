@@ -83,12 +83,8 @@ yarn install
 echo "Run yarn build"
 yarn run build
 
-echo "show content"
-aws s3 ls
-
 echo "Copying to website folder"
-echo ${AWS_S3_BUCKET}
-aws s3 sync ./build/ s3://docusaurus.bene.tf.s3.fr-par.scw.cloud --exact-timestamps --delete --region ${AWS_DEFAULT_REGION} $*
+aws s3 sync ./build/ s3://${AWS_S3_BUCKET} --exact-timestamps --delete --region ${AWS_DEFAULT_REGION} $*
 
 
 echo "Cleaning up things"
