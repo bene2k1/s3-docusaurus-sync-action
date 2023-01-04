@@ -2,23 +2,23 @@
 
 set -e
 
-if [ -z "$AWS_S3_BUCKET" ]; then
-  echo "AWS_S3_BUCKET is not set. Quitting."
+if [ -z "$SCW_S3_BUCKET" ]; then
+  echo "SCW_S3_BUCKET is not set. Quitting."
   exit 1
 fi
 
-if [ -z "$AWS_ACCESS_KEY_ID" ]; then
-  echo "AWS_ACCESS_KEY_ID is not set. Quitting."
+if [ -z "$SCW_ACCESS_KEY_ID" ]; then
+  echo "SCW_ACCESS_KEY_ID is not set. Quitting."
   exit 1
 fi
 
-if [ -z "$AWS_SECRET_ACCESS_KEY" ]; then
-  echo "AWS_SECRET_ACCESS_KEY is not set. Quitting."
+if [ -z "$SCW_SECRET_ACCESS_KEY" ]; then
+  echo "SCW_SECRET_ACCESS_KEY is not set. Quitting."
   exit 1
 fi
 
-if [ -z "$AWS_DEFAULT_REGION" ]; then
-  echo "AWS_DEFAULT_REGION is not set. Quitting."
+if [ -z "$SCW_DEFAULT_REGION" ]; then
+  echo "SCW_DEFAULT_REGION is not set. Quitting."
   exit 1
 fi
 
@@ -71,8 +71,8 @@ s3api =
 EOF
 
 echo "[default]
-aws_access_key_id = ${AWS_ACCESS_KEY_ID}
-aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" > ~/.aws/credentials
+aws_access_key_id = ${SCW_ACCESS_KEY_ID}
+aws_secret_access_key = ${SCW_SECRET_ACCESS_KEY}" > ~/.aws/credentials
 
 
 echo "Change directory to Source"
@@ -89,7 +89,7 @@ echo "Run yarn build"
 yarn run build
 
 echo "Copying to website folder"
-aws s3 sync ./build/ s3://${AWS_S3_BUCKET} --exact-timestamps --delete --region ${AWS_DEFAULT_REGION} $*
+aws s3 sync ./build/ s3://${SCW_S3_BUCKET} --exact-timestamps --delete --region ${SCW_DEFAULT_REGION} $*
 
 
 echo "Cleaning up things"
