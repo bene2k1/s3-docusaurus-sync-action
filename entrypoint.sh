@@ -33,6 +33,9 @@ mkdir -p ~/.aws
 touch ~/.aws/credentials
 
 cat << EOF > ~/.aws/credentials
+[plugins]
+endpoint = awscli_plugin_endpoint
+
 [default]
 aws_access_key_id = ${AWS_ACCESS_KEY_ID}
 aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}
