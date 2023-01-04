@@ -85,7 +85,7 @@ echo "Run yarn build"
 yarn run build
 
 echo "Copying to website folder"
-aws s3 sync ./build/ s3://${SCW_S3_BUCKET} --exact-timestamps --delete --region ${SCW_DEFAULT_REGION} $*
+aws s3 --profile ${SCW_DEFAULT_REGION} sync ./build/ s3://${SCW_S3_BUCKET} --exact-timestamps --delete --region ${SCW_DEFAULT_REGION} $*
 
 
 echo "Cleaning up things"
