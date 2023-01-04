@@ -75,10 +75,6 @@ aws_access_key_id = ${SCW_ACCESS_KEY_ID}
 aws_secret_access_key = ${SCW_SECRET_ACCESS_KEY}" > ~/.aws/credentials
 
 
-echo "Change directory to Source"
-#mkdir website
-#cd website
-
 echo "Install yarn"
 npm install -g yarn
 
