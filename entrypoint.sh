@@ -22,13 +22,6 @@ if [ -z "$AWS_DEFAULT_REGION" ]; then
   exit 1
 fi
 
-
-#if [ -z "$PROJECT_NAME" ]; then
-#  echo "PROJECT_NAME is not set. Quitting."
-#  exit 1
-#fi
-
-
 mkdir -p ~/.aws
 touch ~/.aws/credentials
 touch ~/.aws/config
@@ -49,6 +42,32 @@ s3 =
   multipart_chunksize = 10MB
 s3api =
   endpoint_url = https://s3.fr-par.scw.cloud
+  
+[nl-ams]
+region = nl-ams
+s3 =
+  endpoint_url = https://s3.nl-ams.scw.cloud
+  signature_version = s3v4
+  max_concurrent_requests = 100
+  max_queue_size = 1000
+  multipart_threshold = 50MB
+  # Edit the multipart_chunksize value according to the file sizes that you want to upload. The present configuration allows to upload files up to 10 GB (1000 requests * 10MB). For example setting it to 5GB allows you to upload files up to 5TB.
+  multipart_chunksize = 10MB
+s3api =
+  endpoint_url = https://s3.nl-ams.scw.cloud
+  
+[pl-waw]
+region = pl-waw
+s3 =
+  endpoint_url = https://s3.pl-waw.scw.cloud
+  signature_version = s3v4
+  max_concurrent_requests = 100
+  max_queue_size = 1000
+  multipart_threshold = 50MB
+  # Edit the multipart_chunksize value according to the file sizes that you want to upload. The present configuration allows to upload files up to 10 GB (1000 requests * 10MB). For example setting it to 5GB allows you to upload files up to 5TB.
+  multipart_chunksize = 10MB
+s3api =
+  endpoint_url = https://s3.pl-waw.scw.cloud
 EOF
 
 echo "[default]
