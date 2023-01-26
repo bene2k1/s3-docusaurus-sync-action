@@ -42,8 +42,21 @@ s3 =
   multipart_chunksize = 10MB
 s3api =
   endpoint_url = https://s3.fr-par.scw.cloud
+
+[profile fr-par]
+region = fr-par
+s3 =
+  endpoint_url = https://s3.fr-par.scw.cloud
+  signature_version = s3v4
+  max_concurrent_requests = 100
+  max_queue_size = 1000
+  multipart_threshold = 50MB
+  # Edit the multipart_chunksize value according to the file sizes that you want to upload. The present configuration allows to upload files up to 10 GB (1000 requests * 10MB). For example setting it to 5GB allows you to upload files up to 5TB.
+  multipart_chunksize = 10MB
+s3api =
+  endpoint_url = https://s3.fr-par.scw.cloud
   
-[nl-ams]
+[profile nl-ams]
 region = nl-ams
 s3 =
   endpoint_url = https://s3.nl-ams.scw.cloud
@@ -56,7 +69,7 @@ s3 =
 s3api =
   endpoint_url = https://s3.nl-ams.scw.cloud
   
-[pl-waw]
+[profile pl-waw]
 region = pl-waw
 s3 =
   endpoint_url = https://s3.pl-waw.scw.cloud
@@ -85,8 +98,7 @@ echo "Run yarn build"
 yarn run build
 
 echo "Copying to website folder"
-aws s3 sync ./build/ s3://${SCW_S3_BUCKET} --exact-timestamps --delete --region ${SCW_DEFAULT_REGION} $*
-
+aws --profile ${SCW_BUCKET_REGION} s3 sync ./build/ s3://${SCW_S3_BUCKET} --exact-timestamps --delete $*
 
 echo "Cleaning up things"
 
