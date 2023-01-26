@@ -17,8 +17,8 @@ if [ -z "$SCW_SECRET_ACCESS_KEY" ]; then
   exit 1
 fi
 
-if [ -z "$SCW_DEFAULT_REGION" ]; then
-  echo "SCW_DEFAULT_REGION is not set. Quitting."
+if [ -z "$SCW_BUCKET_REGION" ]; then
+  echo "SCW_BUCKET_REGION is not set. Quitting."
   exit 1
 fi
 
