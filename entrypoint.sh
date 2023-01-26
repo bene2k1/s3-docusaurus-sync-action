@@ -83,9 +83,23 @@ s3api =
   endpoint_url = https://s3.pl-waw.scw.cloud
 EOF
 
-echo "[default]
+cat << EOF > ~/.aws/credentials
+[default]
 aws_access_key_id = ${SCW_ACCESS_KEY_ID}
-aws_secret_access_key = ${SCW_SECRET_ACCESS_KEY}" > ~/.aws/credentials
+aws_secret_access_key = ${SCW_SECRET_ACCESS_KEY}
+
+[fr-par]
+aws_access_key_id = ${SCW_ACCESS_KEY_ID}
+aws_secret_access_key = ${SCW_SECRET_ACCESS_KEY}
+
+[nl-ams]
+aws_access_key_id = ${SCW_ACCESS_KEY_ID}
+aws_secret_access_key = ${SCW_SECRET_ACCESS_KEY}
+
+[pl-waw]
+aws_access_key_id = ${SCW_ACCESS_KEY_ID}
+aws_secret_access_key = ${SCW_SECRET_ACCESS_KEY}
+EOF
 
 
 echo "Install yarn"
